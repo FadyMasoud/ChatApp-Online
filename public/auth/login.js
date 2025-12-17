@@ -4,6 +4,7 @@ function login() {
   const error = document.getElementById("error");
 
   error.innerText = "";
+  // const messegesuccess = document.getElementById("messegesuccess");     
 
   fetch("/api/auth/login", {
     method: "POST",
@@ -17,14 +18,14 @@ function login() {
 
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", data.username);
-        
-      messegesuccess.innerText = "Login successful";
-      setTimeout(() => {
+
+      // messegesuccess.innerText = "Login successful";
+      // setTimeout(() => {
       window.location.href = "/JesourChat.html";
 
-        messegesuccess.innerText = "";
+        // messegesuccess.innerText = "";
           
-        }, 3000);
+        // }, 3000);
         
       } else {
         error.innerText = data.msg || "Login failed";

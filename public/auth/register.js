@@ -14,14 +14,14 @@ function register() {
     .then(res => res.json())
     .then(data => {
       if (data.msg) {
-        
-        messegesuccess.innerText = "Registration successful";
-                setTimeout(() => {
+
+        // messegesuccess.innerText = "Registration successful";
+                // setTimeout(() => {
         window.location.href = "./login.html";
 
-        messegesuccess.innerText = "";
+        // messegesuccess.innerText = "";
           
-        }, 3000);
+        // }, 3000);
         window.location.href = "./login.html";
       } else {
         error.innerText = data.msg || "Registration failed";
