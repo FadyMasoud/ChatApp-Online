@@ -4,7 +4,7 @@ function register() {
   const error = document.getElementById("error");
 
   error.innerText = "";
-  messegesuccess.innerText = "";
+  // messegesuccess.innerText = "";
 
   fetch("/api/auth/register", {
     method: "POST",
