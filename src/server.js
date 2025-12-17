@@ -21,6 +21,11 @@ app.use("/api/auth", require("./routes/authRoutes"));
 // Serve frontend
 app.use(express.static(path.join(__dirname, "../public")));
 
+// Root route
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/JesourChat.html"));
+});
+
 const server = http.createServer(app);
 // Init Socket.IO
 initSocket(server);
