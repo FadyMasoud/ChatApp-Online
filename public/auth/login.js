@@ -13,9 +13,19 @@ function login() {
     .then(res => res.json())
     .then(data => {
       if (data.token) {
+
+
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", data.username);
-        window.location.href = "/JesourChat.html";
+        
+      messegesuccess.innerText = "Login successful";
+      setTimeout(() => {
+      window.location.href = "/JesourChat.html";
+
+        messegesuccess.innerText = "";
+          
+        }, 3000);
+        
       } else {
         error.innerText = data.msg || "Login failed";
       }
