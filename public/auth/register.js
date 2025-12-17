@@ -4,6 +4,7 @@ function register() {
   const error = document.getElementById("error");
 
   error.innerText = "";
+  messegesuccess.innerText = "";
 
   fetch("/api/auth/register", {
     method: "POST",
@@ -13,7 +14,15 @@ function register() {
     .then(res => res.json())
     .then(data => {
       if (data.msg) {
-        // window.location.href = "./login.html";
+        
+        messegesuccess.innerText = "Registration successful";
+                setTimeout(() => {
+        window.location.href = "./login.html";
+
+        messegesuccess.innerText = "";
+          
+        }, 3000);
+        window.location.href = "./login.html";
       } else {
         error.innerText = data.msg || "Registration failed";
       }
