@@ -1,37 +1,44 @@
 function login() {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-  const error = document.getElementById("error");
-
-  error.innerText = "";
-  // const messegesuccess = document.getElementById("messegesuccess");     
 
   fetch("/api/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password })
   })
-    .then(res => res.json())
-    .then(data => {
+    .then(res => res.json()).then(data => {
       if (data.token) {
-
+        showAlert("Login successful", "success");
 
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", data.username);
 
-      // messegesuccess.innerText = "Login successful";
-      // setTimeout(() => {
-      window.location.href = "/JesourChat.html";
+        setTimeout(() => {
+          window.location.href = "/JesourChat.html";
+        }, 1500);
 
-        // messegesuccess.innerText = "";
-          
-        // }, 3000);
-        
       } else {
-        error.innerText = data.msg || "Login failed";
+        showAlert(data.msg || "Login failed", "danger");
       }
     })
     .catch(() => {
-      error.innerText = "Server error";
+      showAlert("Server error", "danger");
     });
+}
+
+
+
+function showAlert(message, type = "success") {
+  const alertBox = document.getElementById("alertBox");
+
+  alertBox.innerHTML = `
+    <div class="custom-alert alert-${type}">
+      ${message}
+    </div>
+  `;
+
+  setTimeout(() => {
+    alertBox.innerHTML = "";
+  }, 3000);
 }

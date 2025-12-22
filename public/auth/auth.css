@@ -82,3 +82,28 @@ body {
   color: red;
   font-size: 14px;
 }
+
+
+.custom-alert {
+  margin-bottom: 15px;
+  border-right: 6px solid;
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* SUCCESS */
+.custom-alert.alert-success {
+  border-right-color: #28a745;
+  background: #e8f7ee;
+  color: #1d7f39;
+}
+
+/* ERROR */
+.custom-alert.alert-danger {
+  border-right-color: #dc3545;
+  background: #fdecea;
+  color: #b52a36;
+}

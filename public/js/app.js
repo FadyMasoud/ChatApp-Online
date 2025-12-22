@@ -17,6 +17,10 @@ let selectedUser = null;
 socket.on("users", (users) => {
   usersList.innerHTML = "";
 
+
+  console.log("users",users);
+  
+
   for (const id in users) {
     if (users[id] === username) continue;
 
@@ -44,6 +48,9 @@ socket.on("users", (users) => {
     usersList.appendChild(li);
   }
 });
+
+
+
 
 socket.on("message", (data) => {
   const div = document.createElement("div");

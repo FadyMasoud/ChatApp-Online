@@ -16,6 +16,8 @@ module.exports = (io) => {
   //Get username from token by decoding it
   // 🔐 AUTHENTICATE SOCKET USING JWT
   io.use((socket, next) => {
+    // console.log(socket);
+    
     if (!socket.handshake.auth.token) {
       return next(new Error("Authentication error"));
     }

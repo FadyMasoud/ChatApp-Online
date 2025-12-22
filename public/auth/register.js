@@ -1,10 +1,6 @@
 function register() {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-  const error = document.getElementById("error");
-
-  error.innerText = "";
-  // messegesuccess.innerText = "";
 
   fetch("/api/auth/register", {
     method: "POST",
@@ -14,20 +10,33 @@ function register() {
     .then(res => res.json())
     .then(data => {
       if (data.msg) {
+        showAlert("Registration successful 🎉 Redirecting...", "success");
 
-        // messegesuccess.innerText = "Registration successful";
-                // setTimeout(() => {
-        window.location.href = "./login.html";
+        setTimeout(() => {
+          window.location.href = "./login.html";
+        }, 1500);
 
-        // messegesuccess.innerText = "";
-          
-        // }, 3000);
-        window.location.href = "./login.html";
       } else {
-        error.innerText = data.msg || "Registration failed";
+        showAlert(data.msg || "Registration failed", "danger");
       }
     })
     .catch(() => {
-      error.innerText = "Server error";
+      showAlert("Server error", "danger");
     });
+}
+
+
+
+function showAlert(message, type = "success") {
+  const alertBox = document.getElementById("alertBox");
+
+  alertBox.innerHTML = `
+    <div class="custom-alert alert-${type}">
+      ${message}
+    </div>
+  `;
+
+  setTimeout(() => {
+    alertBox.innerHTML = "";
+  }, 3000);
 }
